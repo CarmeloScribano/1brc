@@ -21,7 +21,8 @@ public class Calculator {
             String currentLine;
 
             while ((currentLine = br.readLine()) != null) {
-                System.out.println(++entryNumber);
+                if (++entryNumber % 1000000 == 0) System.out.println(entryNumber);
+
                 String[] parts = currentLine.split(";");
 
                 double currentTemperature = Double.parseDouble(parts[1]);
