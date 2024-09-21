@@ -1,14 +1,12 @@
 package models;
 
-public class Station {
-    public String stationName;
+public class StationValues {
     public double min;
     public double mean;
     public double max;
     public int totalEntries;
 
-    public Station(String StationName, double min, double mean, double max, int totalEntries){
-        this.stationName = StationName;
+    public StationValues(double min, double mean, double max, int totalEntries){
         this.min = min;
         this.mean = mean;
         this.max = max;

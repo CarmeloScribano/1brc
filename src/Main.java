@@ -1,14 +1,12 @@
 import controllers.Calculator;
 import java.io.IOException;
+import views.Formatter;
 
 public class Main {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         Calculator calculator = new Calculator();
 
-        try {
-            calculator.readFile();
-        } catch (IOException e) {
-            System.err.println("Error:" + e);
-        }
+        String formattedOutput = Formatter.printFormat(calculator.getStations());
+        System.out.println(formattedOutput);
     }
 }
