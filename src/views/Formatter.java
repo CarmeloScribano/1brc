@@ -11,14 +11,12 @@ public class Formatter {
         
         input.forEach((key, value) -> {
             result.append(key).append("=")
-                  .append(value.min).append("/")
-                  .append(df.format(value.mean)).append("/")
-                  .append(value.max).append(", ");
+                .append(value.min).append("/")
+                .append(df.format(value.mean)).append("/")
+                .append(value.max).append(", ");
         });
         
-        if (!input.isEmpty()) {
-            result.setLength(result.length() - 2);
-        }   
+        result.setLength(result.length() - 2); 
 
         return result + "}";
     }

@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import models.StationValues;
@@ -11,17 +12,16 @@ public class Calculator {
 
     public HashMap<String, StationValues> getStations(String fileName) throws IOException{
         readFile(fileName);
-        return this.stations;
+        return stations;
     }
 
     public void readFile(String fileName) throws IOException {
-        int entryNumber = 0;
-
-        try (BufferedReader br = java.nio.file.Files.newBufferedReader(Paths.get(fileName))) {
+        try (BufferedReader br = Files.newBufferedReader(Paths.get(fileName))) {
             String currentLine;
+            int entryNumber = 0;
 
             while ((currentLine = br.readLine()) != null) {
-                if (++entryNumber % 1000000 == 0) System.out.println(entryNumber);
+                if (++entryNumber % 10000000 == 0) System.out.println(entryNumber);
 
                 String[] parts = currentLine.split(";");
 
@@ -36,12 +36,13 @@ public class Calculator {
                     }
                 );
             }
-        } catch (Exception e) {
-            System.err.println("Error occurred: " + e);
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            throw e;
         }
     }
 
     public static double newMean(double originalValue, double newValue, int numberOfEntries){
-        return ((originalValue * numberOfEntries) + newValue)/(numberOfEntries + 1);
+        return (originalValue * numberOfEntries + newValue) / (numberOfEntries + 1);
     }
 }
