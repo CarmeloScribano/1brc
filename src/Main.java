@@ -6,7 +6,7 @@ public class Main {
     public static void main(String args[]) throws IOException {
         Calculator calculator = new Calculator();
 
-        String formattedOutput = Formatter.printFormat(calculator.getStations());
+        String formattedOutput = Formatter.printFormat(calculator.getStations("./data/measurements-thousand.txt"));
         System.out.println(formattedOutput);
     }
 }

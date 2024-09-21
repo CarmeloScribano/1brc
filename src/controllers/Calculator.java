@@ -9,15 +9,15 @@ import models.StationValues;
 public class Calculator {
     private final HashMap<String, StationValues> stations = new HashMap<>();
 
-    public HashMap<String, StationValues> getStations() throws IOException{
-        readFile();
+    public HashMap<String, StationValues> getStations(String fileName) throws IOException{
+        readFile(fileName);
         return this.stations;
     }
 
-    public void readFile() throws IOException {
+    public void readFile(String fileName) throws IOException {
         int entryNumber = 0;
 
-        try (BufferedReader br = java.nio.file.Files.newBufferedReader(Paths.get("./data/measurements-thousand.txt"))) {
+        try (BufferedReader br = java.nio.file.Files.newBufferedReader(Paths.get(fileName))) {
             String currentLine;
 
             while ((currentLine = br.readLine()) != null) {
