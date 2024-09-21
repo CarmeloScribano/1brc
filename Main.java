@@ -23,7 +23,7 @@ class Main {
 
     public static void main(String args[]) throws IOException {
         long startTime = System.currentTimeMillis();
-        String formattedOutput = format(readFile("./data/measurements-billion.txt"));
+        String formattedOutput = format(readFile("./data/measurements-million.txt"));
         
         System.out.println(formattedOutput);
         System.out.printf("Execution time: %.3f seconds%n", (System.currentTimeMillis() - startTime) / 1000.0);
@@ -51,7 +51,7 @@ class Main {
                 stations.merge(parts[0], new StationValues(currentTemperature, currentTemperature, currentTemperature, 1),
                     (existingValues, newValues) -> {
                         double newMin = Math.min(existingValues.min, currentTemperature);
-                        double newMean = newMean(existingValues.mean, currentTemperature, existingValues.totalEntries);
+                        double newMean = (existingValues.mean * existingValues.totalEntries + currentTemperature) / (existingValues.totalEntries + 1);
                         double newMax = Math.max(existingValues.max, currentTemperature);
                         return new StationValues(newMin, newMean, newMax, existingValues.totalEntries + 1);
                     }
@@ -63,17 +63,6 @@ class Main {
             System.err.println("Error reading file: " + e.getMessage());
             throw e;
         }
-    }
-
-    /** 
-     * Calculates the new mean for a supplied station.
-     * @param originalValue - Original mean value before being updated.
-     * @param newValue - The new value being added to the mean calculation.
-     * @param numberOfEntries - The number of entries used so far to calculate the mean.
-     * @return double - Value containing the new mean that will be used for that station. 
-     */
-    static double newMean(double originalValue, double newValue, int numberOfEntries){
-        return (originalValue * numberOfEntries + newValue) / (numberOfEntries + 1);
     }
     
     /** 
