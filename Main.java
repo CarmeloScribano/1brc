@@ -66,7 +66,7 @@ class Main {
     }
 
     /** 
-     * Calculates the new mean for a supplied.
+     * Calculates the new mean for a supplied station.
      * @param originalValue - Original mean value before being updated.
      * @param newValue - The new value being added to the mean calculation.
      * @param numberOfEntries - The number of entries used so far to calculate the mean.
