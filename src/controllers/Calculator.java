@@ -4,13 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
+import java.util.TreeMap;
 import models.StationValues;
 
 public class Calculator {
-    private final HashMap<String, StationValues> stations = new HashMap<>();
+    private final TreeMap<String, StationValues> stations = new TreeMap<>();
 
-    public HashMap<String, StationValues> getStations(String fileName) throws IOException{
+    public TreeMap<String, StationValues> getStations(String fileName) throws IOException{
         readFile(fileName);
         return stations;
     }

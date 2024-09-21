@@ -1,11 +1,11 @@
 package views;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
+import java.util.TreeMap;
 import models.StationValues;
 
 public class Formatter {
-    public static String printFormat(HashMap<String, StationValues> input){
+    public static String printFormat(TreeMap<String, StationValues> input){
         StringBuilder result = new StringBuilder("{");
         DecimalFormat df = new DecimalFormat("0.00");
         
